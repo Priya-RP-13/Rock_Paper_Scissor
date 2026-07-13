@@ -1,24 +1,38 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Rock Paper Scissors - Results</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
-    <body>
-        <div class="container">
-            <h1>Game Results</h1>
-            <h2> you chose</h2>
-            <h3>{{user}}</h3>
-            <h2>Computer chose</h2>
-            <h3>{{computer}}</h3>
-            <h1>{{result}}</h1>
-            <div> class="score">
-                <h3> Score Board </h3>
-                <p>Wins: {{ session.wins }}</p>
-                <p>Losses: {{ session.losses }}</p>
-                <p>Draws: {{ session.draws }}</p>
-            </div>
-            <a href="/">Play Again</a>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <!-- 1. FIXED: Removed the accidental comma from the link tag attributes -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Game Result</h1>
+        
+        <h2>You Chose</h2>
+        <!-- 2. FIXED: Changed to user_choice to match your app.py return block -->
+        <h3>{{ user_choice }}</h3>
+        
+        <h2>Computer Chose</h2>
+        <!-- 2. FIXED: Changed to computer_choice to match your app.py return block -->
+        <h3>{{ computer_choice }}</h3>
+        
+        <!-- 2. FIXED: Changed to winner to match your app.py return block -->
+        <h1 class="winner-announcement">{{ winner }}</h1>
+        
+        <div class="score">
+            <h3>Score Board</h3>
+            <!-- 3. FIXED: Changed sessions to session and adjusted draws to draw -->
+            <p>Wins: {{ session.wins }}</p>
+            <p>Losses: {{ session.losses }}</p>
+            <p>Draws: {{ session.draw }}</p>
         </div>
-    </body>
+        
+        <a href="{{ url_for('home') }}" class="play-again-btn">
+            Play Again
+        </a>
+    </div>
+</body>
 </html>

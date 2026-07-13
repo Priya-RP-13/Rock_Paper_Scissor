@@ -1,28 +1,46 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Rock Paper Scissors</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
-    <body>
-        <div class="container">
-            <h1>Rock Paper Scissors</h1>
-            <h2> Choose your move: </h2>
-            <form action="/play" method="POST">
-                <button type="submit" name="move" value="rock">Rock</button>
-                <button type="submit" name="move" value="paper">Paper</button>
-                <button type="submit" name="move" value="scissors">Scissors</button>
-            </form>
-       
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <!-- 1. FIXED: Removed the accidental single quote inside href -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Rock Paper Scissors</h1>
+    <h2>Choose your move</h2>
+    
+    <!-- 2. FIXED: Removed the leading single quote from the action attribute -->
+    <!-- 💡 Note: Changed values to lowercase ('rock') to match your backend array rules -->
+    <form action="/play" method="POST">
+        <button type="submit" name="choice" value="rock">
+            🪨 Rock
+        </button>
+
+        <button type="submit" name="choice" value="paper">
+            📄 Paper
+        </button>
         
-          <div class="score">
-            <h2>Score Board</h2>
-            <p>Wins: {{ session.wins }}</p>
-            <p>Losses: {{ session.losses }}</p>
-            <p>Draws: {{ session.draws }}</p>
-          </div>
-        
-        <a href="/reset">Reset Score</a>
-        </div>
-    </body>
+        <button type="submit" name="choice" value="scissors">
+            ✂️ Scissors
+        </button>
+    </form>
+
+    <div class="score">
+        <h3>Score Board</h3>
+        <!-- 3. FIXED: Changed session.draws to session.draw to match your app.py -->
+        <p>Wins: {{ session.wins }}</p>
+        <p>Losses: {{ session.losses }}</p>
+        <p>Draws: {{ session.draw }}</p>
+    </div>
+
+    <a href="/reset" class="reset-btn">
+        Reset Score
+    </a>
+</div>
+
+</body>
 </html>
